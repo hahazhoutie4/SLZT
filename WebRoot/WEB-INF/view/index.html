@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+<title>登陆页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js"></script><script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap-grid.min.css" rel="stylesheet"/>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap-reboot.min.css" rel="stylesheet"/>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
+        <style rel="stylesheet">
+            #platform:before{
+                content: "";
+                position: absolute;
+                padding-top:180px;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,.2);
+                z-index: -1;
+                filter: blur(5px);
+            }
+        
+        </style>
+        </head>
+<body style="background-color: rgba(0,0,0,0.8);color: rgba(255,255,255,0.9);background-image: url(source/img/bg.jpg)">
+    <div class="container" >
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+            <!-- 内部无内容 -->
+            </div>
+            <div class="col-lg-6 col-md-6" id="platform" style="padding-top: 180px">
+                <div class="row">
+                <div class="col-lg-10">
+                    <h4 class="text-center" style="padding-bottom:30px">商务数据平台</h4></div>
+                    </div>
+                <form class="form-horizontal" name='form' onsubmit="javascript:void(0)">
+              <div class="form-group row text-center">
+                <label for="inputEmail3" class="col-lg-2 control-label">Username:</label>
+                <div class="col-lg-8 col-md-2 col-sm-2  col-lg-offset-2">
+                  <input type="text" class="form-control" name="username" id="inputEmail3" placeholder="用户名">
+                </div>
+              </div>
+              <div class="form-group row text-center">
+                <label for="inputPassword3" class="col-lg-2 control-label">Password:</label>
+                <div class="col-lg-8 col-md-2 col-sm-2 col-lg-offset-2 ">
+                  <input type="password" class="form-control" name='password' id="inputPassword3" placeholder="密码">
+                 </div>
+              </div>
+              <div class="form-group row text-center">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name='rem'> 记住登陆状态
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="alert row" id="alert"  style="display: none">
+	              	<div class="alert alert-warning col-lg-8">
+					    <a href="#" class="close" data-dismiss="alert">
+					        &times;
+					    </a>
+	    				<strong>警告!</strong>帐号或密码错误..
+					</div>
+              </div>
+              <div class="form-group text-center row">
+                <div class=" col-lg-6">
+                  <button type="button" class="btn btn-primary btn1" >登录</button>
+                </div>
+                   <div class=" col-lg-3">
+                  <button type="button" class="btn btn-disabled" >注册</button>
+                </div>
+              </div>
+            </form>
+                     </div>
+    <div class="col-lg-3 col-md-3">
+    </div>  
+        </div>
+             </div>
+    </body>
+    <script>
+        
+    $(function(){
+    	$("button.btn1").bind('click',function(){
+    		$.ajax({
+    		url:"validate",
+    		method:"post",
+    		data:$("form").serialize(),
+    		success:function(res){
+    		if(res==="view"){
+    			window.location="view/";
+    		}else{
+    			$("div#alert").show();
+    		}
+    		},
+    		fail:function(){
+    			$("div#alert").show();
+    		}
+    		})
+    	});
+    	
+    	
+    	
+    })
+    </script>
+</html>
